@@ -3,19 +3,19 @@ import { useAppContext } from "../AppContext";
 import * as cardApi from "../api/card";
 import CardType from "../interfaces/CardType";
 import Card from "../components/Card";
-import * as commentApi from "../api/comments"; // api/comments is not complted yet. Expectin Brian complete it.
-import CommentType from "../interfaces/CommentType";
-import Comment from "../components/Comment";
+import * as commentApi from "../api/comments";
+import CommentsType from "../interfaces/CommentsType";
+import CardComment from "../components/CardComment";
 
 const UserPage = () => {
   const useAppState = useAppContext();
 
   const [useCards, setCards] = useState<CardType[] | null>(null);
-  const [useComments, setComments] = useState<CommentType[] | null>(null);
-
+  const [useComments, setComments] = useState<CommentsType[] | null>(null);
 
   useEffect(() => {
     fetchCardsByUserId();
+    fetchCommentsByUserId();
   }, []);
 
   const fetchCardsByUserId = async () => {
@@ -25,13 +25,11 @@ const UserPage = () => {
     }
   };
 
-  useEffect(() => {
-    fetchCommentsByUserId();
-  }, []);
-
   const fetchCommentsByUserId = async () => {
     if (useAppState.user) {
-      const comments = await commentApi.fetchCommentsByUserId(useAppState.user.id);
+      const comments = await commentApi.fetchCommentsByUserId(
+        useAppState.user.id
+      );
       setComments(comments);
     }
   };
@@ -63,14 +61,11 @@ const UserPage = () => {
           <h3 className="user-page__comment-history__h3">Your comments</h3>
           <div className="user-page__comment-history__comments">
             {useComments &&
-                useComments.map((comment, index) => (
-                  <Comment key={index} comment={comment}></Comment>
-                ))}
-
+              useComments.map((comment, index) => (
+                <CardComment key={index} comment={comment}></CardComment>
+              ))}
           </div>
-
         </div>
-
       </section>
     )
   );
