@@ -4,11 +4,10 @@ import Layout from "./components/Layout";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import { useAppContext } from "./AppContextConst";
+import UserPage from "./pages/UserPage";
 
 const App = () => {
   const useAppState = useAppContext();
-
-  console.log(useAppState);
 
   return (
     <AppProvider>
@@ -20,6 +19,7 @@ const App = () => {
               path="/login"
               element={!useAppState.user ? <Login></Login> : <Index></Index>}
             ></Route>
+            <Route path="/user" element={<UserPage></UserPage>} ></Route>
           </Route>
         </Routes>
       </BrowserRouter>
