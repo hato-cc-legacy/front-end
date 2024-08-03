@@ -4,6 +4,8 @@ import * as cardApi from "../api/card";
 import { useEffect, useState } from "react";
 import moment from "moment";
 
+import "./styles/Card.css";
+
 interface Props {
   card: CardType;
 }
@@ -15,7 +17,6 @@ const Card: React.FC<Props> = (props) => {
   useEffect(() => {
     cardApi.updateCard(props.card.id, { views: props.card.views + 1 });
     setViews(props.card.views + 1);
-
   }, []);
 
   // const handleCardClick = () => {};
@@ -30,17 +31,17 @@ const Card: React.FC<Props> = (props) => {
           <span>{props.card.back_text}</span>
         </div>
       </div>
-      <LikesDisLikesButtons card_id={props.card.id}></LikesDisLikesButtons>
-      <div className="card__views">
-        <span>Views</span>
-        <span>{useViews}</span>
+      <div className="specs_container">
+        <LikesDisLikesButtons card_id={props.card.id}></LikesDisLikesButtons>
+        <div className="card__views">
+          <span>Views</span>
+          <span>{useViews}</span>
+        </div>
       </div>
       <div className="card__created_at">
         <span>{moment(props.card.created_at).fromNow()}</span>
       </div>
-      <div className="card__comments">
-
-      </div>
+      <div className="card__comments"></div>
     </section>
   );
 };
