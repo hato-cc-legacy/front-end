@@ -11,9 +11,7 @@ import {
 import AppState from "./interfaces/AppStateType";
 import * as sessionApi from "./api/session";
 
-let initialAppState: AppState = {};
-const storage = localStorage.getItem("appState");
-if (storage) initialAppState = JSON.parse(storage);
+const initialAppState: AppState = {};
 
 const AppContext = createContext(initialAppState);
 const AppDispatchContext = createContext<Dispatch<SetStateAction<AppState>>>(
