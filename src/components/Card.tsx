@@ -15,7 +15,6 @@ const Card: React.FC<Props> = (props) => {
   useEffect(() => {
     cardApi.updateCard(props.card.id, { views: props.card.views + 1 });
     setViews(props.card.views + 1);
-
   }, []);
 
   // const handleCardClick = () => {};
