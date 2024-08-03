@@ -13,6 +13,7 @@ const UserPage = () => {
   const [useCards, setCards] = useState<CardType[] | null>(null);
   const [useComments, setComments] = useState<CommentType[] | null>(null);
 
+
   useEffect(() => {
     fetchCardsByUserId();
   }, []);
@@ -31,7 +32,7 @@ const UserPage = () => {
   const fetchCommentsByUserId = async () => {
     if (useAppState.user) {
       const comments = await commentApi.fetchCommentsByUserId(useAppState.user.id);
-      setCards(comments);
+      setComments(comments);
     }
   };
 
@@ -63,7 +64,7 @@ const UserPage = () => {
           <div className="user-page__comment-history__comments">
             {useComments &&
                 useComments.map((comment, index) => (
-                  <Card key={index} comment={comment}></Card>
+                  <Comment key={index} comment={comment}></Comment>
                 ))}
 
           </div>
