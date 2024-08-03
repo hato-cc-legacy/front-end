@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import * as likesDislikesApi from "../api/likes-dislikes";
 import { useAppContext } from "../AppContext";
 import LikesDislikesType from "../interfaces/LikesDislikesType";
+import SVGLike from "./assets/Like";
+import SVGDislike from "./assets/Dislike";
+
+import "./styles/LikesDislikesButtons.css";
 
 interface Props {
   card_id: number;
@@ -88,7 +92,10 @@ const LikesDisLikesButtons: React.FC<Props> = (props) => {
           disabled={useAppState.user ? false : true}
         >
           <span>{useLikesDislikes.likes.length}</span>
-          <span>Like</span>
+          <span> </span>
+          <span>
+            <SVGLike className="svg" />
+          </span>
         </button>
         <button
           type="button"
@@ -97,7 +104,10 @@ const LikesDisLikesButtons: React.FC<Props> = (props) => {
           disabled={useAppState.user ? false : true}
         >
           <span>{useLikesDislikes.dislikes.length}</span>
-          <span>Dislike</span>
+          <span> </span>
+          <span>
+            <SVGDislike className="svg" />
+          </span>
         </button>
       </div>
     )

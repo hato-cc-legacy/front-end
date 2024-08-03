@@ -3,6 +3,7 @@ import LikesDisLikesButtons from "./LikesDislikesButtons";
 import * as cardApi from "../api/card";
 import { useEffect, useState } from "react";
 import moment from "moment";
+import SVGEye from "./assets/Eye";
 
 import "./styles/Card.css";
 
@@ -34,7 +35,10 @@ const Card: React.FC<Props> = (props) => {
       <div className="specs_container">
         <LikesDisLikesButtons card_id={props.card.id}></LikesDisLikesButtons>
         <div className="card__views">
-          <span>Views</span>
+          <span>
+            <SVGEye className="svg" />
+          </span>
+          <span> </span>
           <span>{useViews}</span>
         </div>
       </div>
