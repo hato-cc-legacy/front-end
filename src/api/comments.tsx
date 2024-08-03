@@ -16,3 +16,7 @@ export const makeNewCardComment = async (comment: CommentsInputType) => {
     })
   ).json();
 };
+
+export const fetchCommentsByUserId = async (user_id: number) => {
+  return await (await fetch (endPoint + "users/" + user_id)).json();
+};
