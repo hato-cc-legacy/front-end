@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useAppContext } from "../AppContext";
 import * as cardApi from "../api/card";
 import CardType from "../interfaces/CardType";
 import Card from "../components/Card";
 import * as commentApi from "../api/comments";
 import CommentsType from "../interfaces/CommentsType";
 import CardComment from "../components/CardComment";
+import { useAppContext } from "../AppContextConst";
 
 const UserPage = () => {
   const useAppState = useAppContext();
@@ -16,7 +16,7 @@ const UserPage = () => {
   useEffect(() => {
     fetchCardsByUserId();
     fetchCommentsByUserId();
-  }, []);
+  }, [useAppState]);
 
   const fetchCardsByUserId = async () => {
     if (useAppState.user) {

@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import moment from "moment";
 import CardComment from "./CardComment";
 import CommentsInputType from "../interfaces/CommentsInputType";
-import { useAppContext } from "../AppContext";
+import { useAppContext } from "../AppContextConst";
 
 interface Props {
   card: CardType;
@@ -27,17 +27,14 @@ const Card: React.FC<Props> = (props) => {
     fetchCardComments();
   }, []);
 
-  useEffect(() => {
-    fetchCardComments();
-  }, [useComments]);
-
   const fetchCardComments = async () => {
     setComments(await commentApi.fetchCardComments(props.card.id));
   };
 
   const createCommentClick = async () => {
-    if (!textareaRef.current || !useComments) return;
+    if (!textareaRef.current || !useComments || !useAppState.user) return;
     const comment: CommentsInputType = {
+      user_id: useAppState.user.id,
       card_id: props.card.id,
       text: textareaRef.current.value,
     };

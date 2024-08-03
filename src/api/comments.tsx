@@ -6,17 +6,19 @@ export const fetchCardComments = async (card_id: number) => {
 };
 
 export const makeNewCardComment = async (comment: CommentsInputType) => {
-  return await (
-    await fetch(endPoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(comment),
-    })
-  ).json();
+  return (
+    await (
+      await fetch(endPoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(comment),
+      })
+    ).json()
+  )[0];
 };
 
 export const fetchCommentsByUserId = async (user_id: number) => {
-  return await (await fetch (endPoint + "users/" + user_id)).json();
+  return await (await fetch(endPoint + "users/" + user_id)).json();
 };

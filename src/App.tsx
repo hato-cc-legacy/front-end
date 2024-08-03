@@ -1,8 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AppProvider, { useAppContext } from "./AppContext";
+import AppProvider from "./AppContext";
 import Layout from "./components/Layout";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
+import { useAppContext } from "./AppContextConst";
 import UserPage from "./pages/UserPage";
 
 const App = () => {
