@@ -38,7 +38,7 @@ const Index = () => {
             onClick={() => setIsCreatingCard(true)}
             className="card-control-buttons__create-button"
           >
-            Create
+            Create another card
           </button>
         )}
         <div className="card-control-buttons__sort-card-options">

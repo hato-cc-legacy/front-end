@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "./styles/Header.css";
 import { useAppContext, useAppDispatchContext } from "../AppContextConst";
 import * as sessionApi from "../api/session";
+import HatoSVG from "./assets/HatoSVG";
 
 const Header = () => {
   const useAppState = useAppContext();
@@ -18,22 +19,31 @@ const Header = () => {
     <>
       <section className="header">
         <h1 className="title_header" onClick={() => navigate("/")}>
-          Message In A Bottle
+          <div className="title-header__icon">
+            <HatoSVG></HatoSVG>
+          </div>
+          Hato - delivering random messages
         </h1>
-        <div>
+        <div className="header__buttons">
           {!useAppState.user ? (
-            <button className="login_button" onClick={() => navigate("/login")}>
+            <button
+              className="header__buttons__button"
+              onClick={() => navigate("/login")}
+            >
               Login
             </button>
           ) : (
-            <div className="users_buttons">
+            <div className="user_buttons">
               <button
-                className="login_button"
+                className="user_buttons__button"
                 onClick={() => navigate("/user")}
               >
                 User Page
               </button>
-              <button className="login_button" onClick={handleLogOut}>
+              <button
+                className="user_buttons__button"
+                onClick={handleLogOut}
+              >
                 Log Out
               </button>
             </div>

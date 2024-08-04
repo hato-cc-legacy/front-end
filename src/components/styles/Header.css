@@ -1,40 +1,59 @@
 .header {
   background-color: var(--main-background-color);
-  height: 100px;
+  height: var(--header-height);
   color: var(--secondary-background-color);
   font-family: var(--main-text-style);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 25px;
+  width: 100%;
 }
 .title_header {
-  margin: 25px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  opacity: 0.75;
+  height: 100%;
 }
-.login_button,
-.set_home {
+
+.title_header:hover {
+  opacity: 1;
+}
+
+.title-header__icon {
+  height: 100%;
+}
+
+.user_buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header__buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+}
+
+.header__buttons__button,
+.user_buttons__button {
   border-radius: var(--main-button-border-radius);
   font-family: var(--secondary-text-style);
   font-weight: var(--heavy-font-weight);
   text-transform: uppercase;
   border: none;
   background-color: var(--supplimental-background-color);
-  margin: 25px;
+  padding: 5px 10px;
+  height: fit-content;
 }
-.login_button:hover,
-.set_home:hover {
+
+.header__buttons__button:hover,
+.user_buttons__button:hover {
   cursor: pointer;
   background-color: #5f2a3b;
   color: azure;
-}
-
-.title_header:hover,
-.button:hover {
-  cursor: pointer;
-  background-color: #5f2a3b;
-  
-}
-.title_header:active,
-.login_button:active,
-.set_home:active {
-  background-color: #003f7f;
 }
