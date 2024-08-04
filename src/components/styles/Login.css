@@ -3,51 +3,52 @@
   justify-content: center;
   align-items: center;
   letter-spacing: 3px;
-  width: 100%;
-  height: 100vh;
-  background-color: var(--supplimental-background-color);
+  height: calc(100vh - var(--header-height) - var(--footer-height));
 }
+
+.input-container {
+  padding: 40px 30px;
+  background-color: var(--secondary-background-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  box-shadow: 3px 3px 3px var(--main-background-color);
+}
+
 .login form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 15px;
 }
 .login-title {
+  margin: 0;
   text-align: center;
   font-size: var(--lg-font-size);
-  text-transform: uppercase;
-  padding: 30px 0;
   font-family: "Roboto Mono";
 }
-.input-container {
-  background-color: var(--secondary-background-color);
-  width: 35%;
-  height: 500px;
-  border-radius: var(--main-border-radius);
-  display: block;
-  justify-content: center;
-  align-items: flex-start;
-  box-shadow: 3px 3px 3px var(--main-background-color);
-}
-.text-field,
-.password-field,
-.button-field {
-  padding: 10px 0 0 0;
-}
+
+
 #username,
 #password {
-  height: 25px;
   border-radius: 5px;
   font-family: var(--secondary-text-style);
   font-weight: var(--heavy-font-weight);
   outline: none;
   border: none;
-  padding: 5px;
+  padding: 10px;
 }
+
+.input--error {
+  background-color: rgba(255, 0, 0, 0.25);
+}
+
 .button-field {
-  width: 163px;
+  width: 100%;
 }
+
 .button {
   font-family: var(--secondary-text-style);
   text-transform: uppercase;
@@ -55,18 +56,17 @@
   background-color: var(--supplimental-background-color);
   font-weight: var(--heavy-font-weight);
   border: none;
-  width: 100%;
-  height: 30px;
-  padding: 5px;
   color: white;
+  padding: 10px;
+  width: 100%;
 }
 
-/* Added hover, click color. Change it by the color concept*/
 .button:hover {
   cursor: pointer;
   background-color: #5f2a3b;
   color: azure;
 }
+
 .button:active {
   background-color: #003f7f;
 }

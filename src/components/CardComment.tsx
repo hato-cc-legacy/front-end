@@ -1,3 +1,5 @@
+import "./styles/CardComment.css";
+
 import moment from "moment";
 import CommentsType from "../interfaces/CommentsType";
 
@@ -12,7 +14,7 @@ const CardComment: React.FC<Props> = (props) => {
         <span>{props.comment.text}</span>
       </div>
       <div className="card-comment__created_at">
-        <span>{moment(props.comment.created_at).fromNow()}</span>
+        <span>Posted {moment(props.comment.created_at).fromNow()}</span>
       </div>
     </div>
   );

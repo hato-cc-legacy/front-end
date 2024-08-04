@@ -11,6 +11,7 @@ import CommentsInputType from "../interfaces/CommentsInputType";
 import { useAppContext } from "../AppContextConst";
 
 import "./styles/Card.css";
+import ReactTextareaAutosize from "react-textarea-autosize";
 
 interface Props {
   card: CardType;
@@ -48,6 +49,14 @@ const Card: React.FC<Props> = (props) => {
 
   const createCommentClick = async () => {
     if (!textareaRef.current || !useComments || !useAppState.user) return;
+
+    const commentText = textareaRef.current.value.trim();
+
+    if (commentText === "") {
+      textareaRef.current.classList.add("input-error");
+      return;
+    } else textareaRef.current.classList.remove("input-error");
+
     const comment: CommentsInputType = {
       user_id: useAppState.user.id,
       card_id: props.card.id,
@@ -85,29 +94,32 @@ const Card: React.FC<Props> = (props) => {
       <div className="card__created_at">
         <span>Created {moment(props.card.created_at).fromNow()}</span>
       </div>
+      <hr />
       {useIsShowComments && (
-        <>
-          <form className="card__new-comment">
-            <textarea
+        <div className="card__comments_section">
+          <form className="card__comments_section__new-comment">
+            <ReactTextareaAutosize
+              placeholder="Enter your comment here!"
+              minRows={2}
               disabled={useAppState.user ? false : true}
-              className="card__new-comment__textarea"
+              className="card__comments_section__new-comment__textarea"
               ref={textareaRef}
-            ></textarea>
+            ></ReactTextareaAutosize>
             <button
               type="button"
-              className="card__new-comment__button"
+              className="card__comments_section__new-comment__button"
               onClick={createCommentClick}
             >
-              <span>post</span>
+              post
             </button>
           </form>
-          <div className="card__comments">
+          <div className="card__comments_section__comments">
             {useComments &&
               useComments.map((comment, index) => (
                 <CardComment key={index} comment={comment}></CardComment>
               ))}
           </div>
-        </>
+        </div>
       )}
     </section>
   );

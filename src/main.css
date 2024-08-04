@@ -2,7 +2,7 @@
   --main-background-color: #32161f;
   --box-shadow-color: rgba(0, 0, 0, 0.35);
   --secondary-background-color: #a8f9ff;
-  --supplimental-background-color: #81a094;
+  --supplimental-background-color: #8db9a8;
   --main-text-color: #9ae5e6;
   --secondary-text-color: #9ae5e6;
   --inverted-main-text-color: #32161f;
@@ -19,8 +19,24 @@
 
 * {
   box-sizing: border-box;
+  transition: all ease-in-out 0.20s;
 }
 
 body {
   margin: 0;
+  background-color: var(--supplimental-background-color);
+}
+
+textarea{
+  font-family: var(--secondary-text-style);
+}
+
+hr {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.input-error {
+  background-color: rgba(255, 147, 147, 0.5);
 }

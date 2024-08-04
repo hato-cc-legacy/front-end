@@ -1,31 +1,61 @@
 .user-page {
-  background-color: var(--supplimental-background-color);
+  margin: 20px;
+  width: 100%;
+  max-width: 1000px;
+  font-family: var(--secondary-text-style);
+  display: grid;
+  gap: 20px;
+  grid-template:
+    "a b" auto
+    "c c" max-content
+    "d d" auto;
+  padding: 20px;
+  height: calc(100vh - var(--header-height) - var(--footer-height) + 20px * 2);
+}
+
+.user-page__user-info {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: var(--secondary-text-style);
+  gap: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  width: fit-content;
+  padding: 20px;
+  grid-area: a;
 }
-.user-page__user-title {
+
+.user-page__comment-history {
+  grid-area: b;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-page__comment-history__comments {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.user-page__hr {
+  grid-area: c;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.user-page__card-history {
+  grid-area: d;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.user-page__card-history__h3 {
+  margin: 0;
+}
+
+.user-page__card-history__cards {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width: 95%;
-  margin: 25px;
-}
-.user-page__card-history {
-  width: 95%;
-  /* display: flex;
-  justify-content: center; */
-  /* align-items: center; */
-}
-.user-page__user {
-  display: flex;
-  flex-direction: column;
-}
-.user-page__h2 {
-  margin: 0;
-}
-.user-page__comment-history__h3 {
-  margin: 0;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
 }

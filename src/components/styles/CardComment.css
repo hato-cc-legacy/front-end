@@ -1,0 +1,15 @@
+.card-comment {
+  border: 1px solid rgba(0, 0, 0, 1);
+  padding: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+}
+
+.card-comment__text {
+  color: var(--inverted-main-text-color);
+  font-size: large;
+}
+
+.card-comment__created_at {
+  font-size: small;
+  text-align: right;
+}
