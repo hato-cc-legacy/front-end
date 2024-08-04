@@ -3,8 +3,11 @@ import CardType from "../interfaces/CardType";
 import Card from "../components/Card";
 import CreateCardWindow from "../components/CreateCardWindow";
 import { fetchCardsByCategoryId } from "../api/card";
+import { useAppContext } from "../AppContextConst";
 
 const Index = () => {
+  const useAppState = useAppContext();
+
   const [useCurrentCard, setCurrentCard] = useState<CardType | null>(null);
   const [isCreatingCard, setIsCreatingCard] = useState(false);
 
@@ -31,12 +34,14 @@ const Index = () => {
       )}
 
       <div className="card-control-buttons">
-        <button
-          onClick={() => setIsCreatingCard(true)}
-          className="card-control-buttons__create-button"
-        >
-          Create
-        </button>
+        {useAppState.user && (
+          <button
+            onClick={() => setIsCreatingCard(true)}
+            className="card-control-buttons__create-button"
+          >
+            Create
+          </button>
+        )}
         <div className="card-control-buttons__sort-card-options">
           <h2 className="card-control-buttons__sort-card-options__h2">
             What card do you want?
