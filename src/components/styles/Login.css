@@ -58,7 +58,15 @@
   width: 100%;
   height: 30px;
   padding: 5px;
+  color: white;
 }
+
+/* Added hover, click color. Change it by the color concept*/
 .button:hover {
   cursor: pointer;
+  background-color: #5f2a3b;
+  color: azure;
+}
+.button:active {
+  background-color: #003f7f;
 }

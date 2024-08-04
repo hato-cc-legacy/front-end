@@ -32,7 +32,6 @@ const Index = () => {
       {isCreatingCard && (
         <CreateCardWindow setIsCreatingCard={setIsCreatingCard} />
       )}
-
       <div className="card-control-buttons">
         {useAppState.user && (
           <button
