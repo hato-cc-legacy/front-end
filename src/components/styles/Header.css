@@ -1,6 +1,6 @@
 .header {
   background-color: var(--main-background-color);
-  height: 100px;
+  height: var(--header-height);
   color: var(--secondary-background-color);
   font-family: var(--main-text-style);
   display: flex;

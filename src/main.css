@@ -12,7 +12,14 @@
   --std-font-size: 35px;
   --main-border-radius: 15px;
   --main-button-border-radius: 5px;
+  --header-height: 50px;
+  --footer-height: 50px;
 }
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
 }

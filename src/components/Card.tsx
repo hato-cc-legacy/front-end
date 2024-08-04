@@ -79,12 +79,11 @@ const Card: React.FC<Props> = (props) => {
           <span>
             <SVGEye className="svg" />
           </span>
-          <span> </span>
           <span>{useViews}</span>
         </div>
       </div>
       <div className="card__created_at">
-        <span>{moment(props.card.created_at).fromNow()}</span>
+        <span>Created {moment(props.card.created_at).fromNow()}</span>
       </div>
       {useIsShowComments && (
         <>
