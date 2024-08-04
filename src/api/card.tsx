@@ -17,13 +17,16 @@ export const fetchCardsByUserId = async (user_id: number) => {
   return await (await fetch(endPoint + "users/" + user_id)).json();
 };
 
-
 export const createCard = async (card: CreateCardType) => {
-  return await fetch(endPoint , {
+  return (await (await fetch(endPoint , {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(card),
-  });
+  })).json())[0];
 };
+
+export const fetchCardsByCategoryId = async () => {
+  return await fetch(endPoint )
+}
