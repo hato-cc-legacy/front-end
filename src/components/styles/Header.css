@@ -8,8 +8,16 @@
   align-items: center;
 }
 .title_header {
+  display: flex;
+  flex-direction: row;
   margin: 25px;
+  align-items: center;
 }
+
+.title-header__icon {
+  height: 50px;
+}
+
 .login_button,
 .set_home {
   border-radius: var(--main-button-border-radius);
