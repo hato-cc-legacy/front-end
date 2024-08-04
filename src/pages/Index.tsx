@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import CardType from "../interfaces/CardType";
 import Card from "../components/Card";
 import CreateCardWindow from "../components/CreateCardWindow";
-import { fetchCardsByCategoryId } from "../api/card";
+import { fetchCardByCategoryId } from "../api/card";
 import { useAppContext } from "../AppContextConst";
 
 const Index = () => {
@@ -21,10 +21,10 @@ const Index = () => {
     setCurrentCard(response);
   };
 
-  const fetchCardByCategory = async (num: number) => {
-    const cardByCategoryId = await fetchCardsByCategoryId(num);
-    if (!num) return;
-    setCurrentCard(cardByCategoryId[0]);
+  const fetchOneCardByCategory = async (num: number) => {
+    const cardByCategoryId = await fetchCardByCategoryId(num);
+    setCurrentCard(null);
+    setCurrentCard(cardByCategoryId);
   };
 
   return (
@@ -35,15 +35,37 @@ const Index = () => {
 
       <div className="card-control-buttons">
         {useAppState.user && (
-          <button onClick={() => setIsCreatingCard(true)}>Create</button>
+          <button
+            onClick={() => setIsCreatingCard(true)}
+            className="card-control-buttons__create-button"
+          >
+            Create
+          </button>
         )}
         <div className="card-control-buttons__sort-card-options">
           <h2 className="card-control-buttons__sort-card-options__h2">
             What card do you want?
           </h2>
-          <button onClick={() => fetchCardByCategory(1)}>Jokes</button>
-          <button onClick={() => fetchCardByCategory(2)}>Trivia</button>
-          <button onClick={() => fetchCardByCategory(3)}>Whatever</button>
+          <div className="card-control-buttons__button-container">
+            <button
+              onClick={() => fetchOneCardByCategory(1)}
+              className="card-control-buttons__jokes-button"
+            >
+              Jokes
+            </button>
+            <button
+              onClick={() => fetchOneCardByCategory(2)}
+              className="card-control-buttons__trivia-button"
+            >
+              Trivia
+            </button>
+            <button
+              onClick={() => fetchOneCardByCategory(3)}
+              className="card-control-buttons__whatever-button"
+            >
+              Whatever
+            </button>
+          </div>
         </div>
       </div>
       {useCurrentCard && <Card card={useCurrentCard}></Card>}
