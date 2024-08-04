@@ -29,3 +29,12 @@ export const login = async (userLogin: UserLoginType) => {
     return null;
   }
 };
+
+export const logout = async () => {
+  const configs: RequestInit = {
+    credentials: "include",
+    method: "DELETE",
+  };
+
+  await fetch(endPoint, configs);
+};

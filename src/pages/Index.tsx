@@ -3,8 +3,11 @@ import CardType from "../interfaces/CardType";
 import Card from "../components/Card";
 import CreateCardWindow from "../components/CreateCardWindow";
 import { fetchCardsByCategoryId } from "../api/card";
+import { useAppContext } from "../AppContextConst";
 
 const Index = () => {
+  const useAppState = useAppContext();
+
   const [useCurrentCard, setCurrentCard] = useState<CardType | null>(null);
   const [isCreatingCard, setIsCreatingCard] = useState(false);
 
@@ -20,9 +23,9 @@ const Index = () => {
 
   const fetchCardByCategory = async (num: number) => {
     const cardByCategoryId = await fetchCardsByCategoryId(num);
-    if(!num) return;
+    if (!num) return;
     setCurrentCard(cardByCategoryId[0]);
-  }
+  };
 
   return (
     <section className="index">
@@ -31,9 +34,13 @@ const Index = () => {
       )}
 
       <div className="card-control-buttons">
-        <button onClick={() => setIsCreatingCard(true)}>Create</button>
+        {useAppState.user && (
+          <button onClick={() => setIsCreatingCard(true)}>Create</button>
+        )}
         <div className="card-control-buttons__sort-card-options">
-          <h2 className="card-control-buttons__sort-card-options__h2">What card do you want?</h2>
+          <h2 className="card-control-buttons__sort-card-options__h2">
+            What card do you want?
+          </h2>
           <button onClick={() => fetchCardByCategory(1)}>Jokes</button>
           <button onClick={() => fetchCardByCategory(2)}>Trivia</button>
           <button onClick={() => fetchCardByCategory(3)}>Whatever</button>
