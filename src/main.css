@@ -1,0 +1,15 @@
+:root {
+  --main-background-color: #32161f;
+  --secondary-background-color: #a8f9ff;
+  --supplimental-background-color: #81a094;
+  --main-text-color: #9ae5e6;
+  --secondary-text-color: #9ae5e6;
+  --inverted-main-text-color: #32161f;
+  --main-text-style: "Roboto Mono";
+  --secondary-text-style: "Raleway";
+  --heavy-font-weight: 600;
+  --lg-font-size: 40px;
+  --std-font-size: 35px;
+  --main-border-radius: 15px;
+  --main-button-border-radius: 5px;
+}
