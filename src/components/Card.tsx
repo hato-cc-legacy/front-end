@@ -10,7 +10,6 @@ import CardComment from "./CardComment";
 import CommentsInputType from "../interfaces/CommentsInputType";
 import { useAppContext } from "../AppContextConst";
 
-
 import "./styles/Card.css";
 
 interface Props {
@@ -29,8 +28,10 @@ const Card: React.FC<Props> = (props) => {
   useEffect(() => {
     cardApi.updateCard(props.card.id, { views: props.card.views + 1 });
     setViews(props.card.views + 1);
+    setIsCardFront(true);
+    setIsShowComments(false);
     fetchCardComments();
-  }, []);
+  }, [props]);
 
   const handleCardFlipToFront = () => {
     setIsCardFront(true);
@@ -53,7 +54,7 @@ const Card: React.FC<Props> = (props) => {
       text: textareaRef.current.value,
     };
     const response = await commentApi.makeNewCardComment(comment);
-    useComments.push(response);
+    useComments.unshift(response);
     setComments([...useComments]);
     textareaRef.current.value = "";
   };

@@ -22,8 +22,8 @@ const Index = () => {
   };
 
   const fetchOneCardByCategory = async (num: number) => {
-    if (!num) return;
     const cardByCategoryId = await fetchCardByCategoryId(num);
+    setCurrentCard(null);
     setCurrentCard(cardByCategoryId);
   };
 
