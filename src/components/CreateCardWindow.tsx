@@ -47,14 +47,36 @@ const CreateCardWindow: React.FC<Props> = (props) => {
           <textarea ref={frontTextRef}></textarea>
           <textarea ref={backTextRef}></textarea>
           <div className="creating-card-window__category-Choices">
-            <button onClick={() => handleChosenCategory(1)}>Joke</button>
-            <button onClick={() => handleChosenCategory(2)}>Trivia</button>
-            <button onClick={() => handleChosenCategory(3)}>Whatever</button>
+            <button
+              onClick={() => handleChosenCategory(1)}
+              className="joke-button"
+            >
+              Joke
+            </button>
+            <button
+              onClick={() => handleChosenCategory(2)}
+              className="trivia-button"
+            >
+              Trivia
+            </button>
+            <button
+              onClick={() => handleChosenCategory(3)}
+              className="whatever"
+            >
+              Whatever
+            </button>
           </div>
-          <button onClick={CreateCardOnClick}>submit</button>
+          <button onClick={CreateCardOnClick} className="submit-button">
+            submit
+          </button>
         </div>
       )}
-      <button onClick={() => props.setIsCreatingCard(false)}>close</button>
+      <button
+        onClick={() => props.setIsCreatingCard(false)}
+        className="close-button"
+      >
+        close
+      </button>
     </div>
   );
 };

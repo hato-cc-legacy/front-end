@@ -35,15 +35,37 @@ const Index = () => {
 
       <div className="card-control-buttons">
         {useAppState.user && (
-          <button onClick={() => setIsCreatingCard(true)}>Create</button>
+          <button
+            onClick={() => setIsCreatingCard(true)}
+            className="card-control-buttons__create-button"
+          >
+            Create
+          </button>
         )}
         <div className="card-control-buttons__sort-card-options">
           <h2 className="card-control-buttons__sort-card-options__h2">
             What card do you want?
           </h2>
-          <button onClick={() => fetchOneCardByCategory(1)}>Jokes</button>
-          <button onClick={() => fetchOneCardByCategory(2)}>Trivia</button>
-          <button onClick={() => fetchOneCardByCategory(3)}>Whatever</button>
+          <div className="card-control-buttons__button-container">
+            <button
+              onClick={() => fetchOneCardByCategory(1)}
+              className="card-control-buttons__jokes-button"
+            >
+              Jokes
+            </button>
+            <button
+              onClick={() => fetchOneCardByCategory(2)}
+              className="card-control-buttons__trivia-button"
+            >
+              Trivia
+            </button>
+            <button
+              onClick={() => fetchOneCardByCategory(3)}
+              className="card-control-buttons__whatever-button"
+            >
+              Whatever
+            </button>
+          </div>
         </div>
       </div>
       {useCurrentCard && <Card card={useCurrentCard}></Card>}
