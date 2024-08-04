@@ -10,6 +10,7 @@
   font-weight: var(--heavy-font-weight);
   padding-top: 50px; 
 }
+
 .card_content {
   display: flex;
   justify-content: center;
@@ -17,8 +18,28 @@
   margin-bottom: 20px; 
 }
 
+.card-control-buttons__button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px; 
+}
+
 .card-control-buttons {
   margin-top: 20px; 
+}
+
+.card-control-buttons__jokes-button,
+.card-control-buttons__trivia-button,
+.card-control-buttons__whatever-button {
+border-radius: 5px;
+height: 30px;
+width: 90px;
+border: none;
+font-family: var(--secondary-text-style);
+font-weight: var(--heavy-font-weight);
+background-color: var(--main-background-color);
+color: var(--main-text-color);
+text-transform: uppercase;
 }
 
 .card__content__front,
@@ -42,6 +63,20 @@
   align-items: center;
   flex-direction: row;
 }
+
+.card-control-buttons__jokes-button:hover,
+.card-control-buttons__trivia-button:hover,
+.card-control-buttons__whatever-button:hover {
+  cursor: pointer;
+  background-color: #5f2a3b;
+}
+  
+.card-control-buttons__jokes-button:active,
+.card-control-buttons__trivia-button:active,
+.card-control-buttons__whatever-button:active {
+  background-color: #003f7f;
+}
+
 /* .card__created_at {
   width: 100%;
   margin: 0 0 0 300px;
