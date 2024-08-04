@@ -22,12 +22,22 @@ const Card: React.FC<Props> = (props) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [useViews, setViews] = useState(props.card.views);
   const [useComments, setComments] = useState<CommentsType[] | null>(null);
-  // const [useIsFlipped, setIsFlipped] = useState(false);
+  const [useIsCardFront, setIsCardFront] = useState(true);
+  const [useIsShowComments, setIsShowComments] = useState(false);
 
   useEffect(() => {
     cardApi.updateCard(props.card.id, { views: props.card.views + 1 });
     setViews(props.card.views + 1);
   }, []);
+
+  const handleCardFlipToFront = () => {
+    setIsCardFront(true);
+  };
+
+  const handleCardFlipToBack = () => {
+    setIsCardFront(false);
+    setIsShowComments(true);
+  };
 
   const fetchCardComments = async () => {
     setComments(await commentApi.fetchCardComments(props.card.id));
@@ -48,13 +58,17 @@ const Card: React.FC<Props> = (props) => {
 
   return (
     <section className="card">
-      <div className="card_content">
-        <div className="card__content__front">
-          <span>{props.card.front_text}</span>
-        </div>
-        <div className="card__content__back">
-          <span>{props.card.back_text}</span>
-        </div>
+      <div className="card__content">
+        {useIsCardFront && (
+          <div className="card__content__front" onClick={handleCardFlipToBack}>
+            <span>{props.card.front_text}</span>
+          </div>
+        )}
+        {!useIsCardFront && (
+          <div className="card__content__back" onClick={handleCardFlipToFront}>
+            <span>{props.card.back_text}</span>
+          </div>
+        )}
       </div>
       <div className="specs_container">
         <LikesDisLikesButtons card_id={props.card.id}></LikesDisLikesButtons>
@@ -69,7 +83,30 @@ const Card: React.FC<Props> = (props) => {
       <div className="card__created_at">
         <span>{moment(props.card.created_at).fromNow()}</span>
       </div>
-      <div className="card__comments"></div>
+      {useIsShowComments && (
+        <>
+          <form className="card__new-comment">
+            <textarea
+              disabled={useAppState.user ? false : true}
+              className="card__new-comment__textarea"
+              ref={textareaRef}
+            ></textarea>
+            <button
+              type="button"
+              className="card__new-comment__button"
+              onClick={createCommentClick}
+            >
+              <span>post</span>
+            </button>
+          </form>
+          <div className="card__comments">
+            {useComments &&
+              useComments.map((comment, index) => (
+                <CardComment key={index} comment={comment}></CardComment>
+              ))}
+          </div>
+        </>
+      )}
     </section>
   );
 };
