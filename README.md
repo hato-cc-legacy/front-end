@@ -31,6 +31,7 @@ node js
 ### Installing
 
 You need to install your server.
+Once the server is running, you can access the application at your local server (or the port configured in your Vite settings).
 
 The step will be
 
@@ -49,16 +50,15 @@ The file .env.production should contain necessary variables such as API endpoint
 PORT = `<port_number>`
 ```
 
-And run your server.
-
-```
-npm run express-dev
-```
-## Usage <a name = "usage"></a>
-
 ### API Integration
 The front-end project integrates with backend APIs through files in the src/api/ directory:
 - `card.tsx`: Handles operations related to cards, such as fetching and updating cards.
 - `comments.tsx`: Manages comment-related API calls.
 - `likes-dislikes.tsx`: Handles like/dislike operations for cards.
 - `session.tsx`: Manages session-related API calls, such as login and logout.
+
+### TypeScript Interfaces
+The src/interfaces/ directory contains TypeScript interfaces to define the structure of data throughout the application. Key interfaces include:
+- `CardType.tsx`: Defines the structure of a card.
+- `CommentsType.tsx`: Defines the structure of a comment.
+- `UserType.tsx`: Defines the structure of a user.
