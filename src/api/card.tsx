@@ -27,6 +27,6 @@ export const createCard = async (card: CreateCardType) => {
   })).json())[0];
 };
 
-export const fetchCardsByCategoryId = async (category_id: number) => {
+export const fetchCardByCategoryId = async (category_id: number) => {
   return await (await fetch(endPoint + "random/categories/" + category_id)).json();
 }
