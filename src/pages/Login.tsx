@@ -20,18 +20,19 @@ const Login = () => {
       const inputUserNameValue = inputUserName.value.trim();
       const inputPasswordValue = inputPassword.value;
 
-      if (inputUserNameValue !== "") {
-        if (inputPasswordValue !== "") {
-          const userLogin: UserLogin = {
-            username: inputUserNameValue,
-            password: inputPasswordValue,
-          };
-          const user = await sessionApi.login(userLogin);
-          if (user) {
-            setAppState({ user });
-            navigate("/");
-          }
-        }
+      if (inputUserNameValue === "") return;
+
+      if (inputPasswordValue === "") return;
+
+      const userLogin: UserLogin = {
+        username: inputUserNameValue,
+        password: inputPasswordValue,
+      };
+      
+      const user = await sessionApi.login(userLogin);
+      if (user) {
+        setAppState({ user });
+        navigate("/");
       }
     }
   };
