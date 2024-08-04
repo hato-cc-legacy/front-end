@@ -9,7 +9,6 @@ import SVGEye from "./assets/Eye";
 import CardComment from "./CardComment";
 import CommentsInputType from "../interfaces/CommentsInputType";
 import { useAppContext } from "../AppContextConst";
-import CreateCardWindow from "./CreateCardWindow";
 
 import "./styles/Card.css";
 
