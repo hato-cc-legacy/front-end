@@ -29,7 +29,6 @@ const Index = () => {
       {isCreatingCard && (
         <CreateCardWindow setIsCreatingCard={setIsCreatingCard} />
       )}
-
       <div className="card-control-buttons">
         <button onClick={() => setIsCreatingCard(true)}>Create</button>
         <div className="card-control-buttons__sort-card-options">
