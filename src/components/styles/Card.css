@@ -28,18 +28,30 @@
   margin-top: 20px; 
 }
 
+.card__new-comment__button {
+  border-radius: 5px;
+  height: 25px;
+  width: 50px;
+  border: none;
+  font-family: var(--secondary-text-style);
+  font-weight: var(--heavy-font-weight);
+  background-color: var(--main-background-color);
+  color: var(--main-text-color);
+  text-transform: uppercase;
+}
+
 .card-control-buttons__jokes-button,
 .card-control-buttons__trivia-button,
 .card-control-buttons__whatever-button {
-border-radius: 5px;
-height: 30px;
-width: 90px;
-border: none;
-font-family: var(--secondary-text-style);
-font-weight: var(--heavy-font-weight);
-background-color: var(--main-background-color);
-color: var(--main-text-color);
-text-transform: uppercase;
+  border-radius: 5px;
+  height: 30px;
+  width: 90px;
+  border: none;
+  font-family: var(--secondary-text-style);
+  font-weight: var(--heavy-font-weight);
+  background-color: var(--main-background-color);
+  color: var(--main-text-color);
+  text-transform: uppercase;
 }
 
 .card__content__front,
@@ -66,19 +78,22 @@ text-transform: uppercase;
 
 .card-control-buttons__jokes-button:hover,
 .card-control-buttons__trivia-button:hover,
-.card-control-buttons__whatever-button:hover {
+.card-control-buttons__whatever-button:hover,
+.card__new-comment__button:hover {
   cursor: pointer;
   background-color: #5f2a3b;
 }
   
 .card-control-buttons__jokes-button:active,
 .card-control-buttons__trivia-button:active,
-.card-control-buttons__whatever-button:active {
+.card-control-buttons__whatever-button:active,
+.card__new-comment__button:active {
   background-color: #003f7f;
 }
 
-/* .card__created_at {
-  width: 100%;
-  margin: 0 0 0 300px;
-} */
+.card__created_at,
+.card-comment__created_at {
+  font-size: 70%;
+  margin-left: 20%;
+}
 

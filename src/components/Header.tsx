@@ -18,7 +18,7 @@ const Header = () => {
     <>
       <section className="header">
         <h1 className="title_header" onClick={() => navigate("/")}>
-          Message In A Bottle
+          Message In A Bottle 📨
         </h1>
         <div>
           {!useAppState.user ? (
