@@ -6,6 +6,7 @@ import * as commentApi from "../api/comments";
 import CommentsType from "../interfaces/CommentsType";
 import CardComment from "../components/CardComment";
 import { useAppContext } from "../AppContextConst";
+import "../components/styles/Users.css";
 
 const UserPage = () => {
   const useAppState = useAppContext();
@@ -37,15 +38,19 @@ const UserPage = () => {
   return (
     useAppState.user && (
       <section className="user-page">
-        <h2 className="user-page__h2">User Page</h2>
-        <div className="user-page__user">
-          <div className="user-page__user__id">
-            <span>User ID:</span>
-            <span>{useAppState.user.id}</span>
-          </div>
-          <div className="user-page__user__name">
-            <span>Username:</span>
-            <span>{useAppState.user.username}</span>
+        <div className="user-page__user-title">
+          <h2 className="user-page__h2">User Page</h2>
+          <div className="user-page__user">
+            <div className="user-page__user-info">
+              <div className="user-page__user__id">
+                <span>User ID: </span>
+                <span>{useAppState.user.id}</span>
+              </div>
+            </div>
+            <div className="user-page__user__name">
+              <span>Username: </span>
+              <span>{useAppState.user.username}</span>
+            </div>
           </div>
         </div>
         <div className="user-page__card-history">

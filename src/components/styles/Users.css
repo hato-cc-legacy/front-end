@@ -1,0 +1,31 @@
+.user-page {
+  background-color: var(--supplimental-background-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--secondary-text-style);
+}
+.user-page__user-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 95%;
+  margin: 25px;
+}
+.user-page__card-history {
+  width: 95%;
+  /* display: flex;
+  justify-content: center; */
+  /* align-items: center; */
+}
+.user-page__user {
+  display: flex;
+  flex-direction: column;
+}
+.user-page__h2 {
+  margin: 0;
+}
+.user-page__comment-history__h3 {
+  margin: 0;
+}
