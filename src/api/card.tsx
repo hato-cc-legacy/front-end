@@ -11,3 +11,7 @@ export const updateCard = async (card_id: number, card: CardUpdateType) => {
     body: JSON.stringify({ card }),
   });
 };
+
+export const fetchCardsByUserId = async (user_id: number) => {
+  return await (await fetch(endPoint + "users/" + user_id)).json();
+};

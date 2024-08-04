@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import * as likesDislikesApi from "../api/likes-dislikes";
-import { useAppContext } from "../AppContext";
 import LikesDislikesType from "../interfaces/LikesDislikesType";
+import { useAppContext } from "../AppContextConst";
 import SVGLike from "./assets/Like";
 import SVGDislike from "./assets/Dislike";
 

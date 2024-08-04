@@ -1,9 +1,14 @@
 import CardType from "../interfaces/CardType";
+import CommentsType from "../interfaces/CommentsType";
 import LikesDisLikesButtons from "./LikesDislikesButtons";
 import * as cardApi from "../api/card";
-import { useEffect, useState } from "react";
+import * as commentApi from "../api/comments";
+import { useEffect, useRef, useState } from "react";
 import moment from "moment";
 import SVGEye from "./assets/Eye";
+import CardComment from "./CardComment";
+import CommentsInputType from "../interfaces/CommentsInputType";
+import { useAppContext } from "../AppContextConst";
 
 import "./styles/Card.css";
 
@@ -12,7 +17,11 @@ interface Props {
 }
 
 const Card: React.FC<Props> = (props) => {
+  const useAppState = useAppContext();
+
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [useViews, setViews] = useState(props.card.views);
+  const [useComments, setComments] = useState<CommentsType[] | null>(null);
   // const [useIsFlipped, setIsFlipped] = useState(false);
 
   useEffect(() => {
@@ -20,7 +29,22 @@ const Card: React.FC<Props> = (props) => {
     setViews(props.card.views + 1);
   }, []);
 
-  // const handleCardClick = () => {};
+  const fetchCardComments = async () => {
+    setComments(await commentApi.fetchCardComments(props.card.id));
+  };
+
+  const createCommentClick = async () => {
+    if (!textareaRef.current || !useComments || !useAppState.user) return;
+    const comment: CommentsInputType = {
+      user_id: useAppState.user.id,
+      card_id: props.card.id,
+      text: textareaRef.current.value,
+    };
+    const response = await commentApi.makeNewCardComment(comment);
+    useComments.push(response);
+    setComments([...useComments]);
+    textareaRef.current.value = "";
+  };
 
   return (
     <section className="card">
