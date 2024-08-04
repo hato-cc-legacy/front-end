@@ -1,12 +1,40 @@
 .index {
   background-color: var(--supplimental-background-color);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 85vh;
   font-family: var(--main-text-style);
   font-weight: var(--heavy-font-weight);
+}
+.card-control-buttons {
+  margin: 25px;
+}
+.card-control-buttons__create-button,
+.card-control-buttons__jokes-button,
+.card-control-buttons__trivia-button,
+.card-control-buttons__whatever-button {
+  border-radius: 5px;
+  height: 30px;
+  width: 90px;
+  border: none;
+  font-family: var(--secondary-text-style);
+  font-weight: var(--heavy-font-weight);
+  background-color: var(--main-background-color);
+  color: var(--main-text-color);
+  text-transform: uppercase;
+}
+.card-control-buttons__button-container {
+  display: flex;
+  justify-content: space-between;
+}
+.card-control-buttons__create-button:hover,
+.card-control-buttons__jokes-button:hover,
+.card-control-buttons__trivia-button:hover,
+.card-control-buttons__whatever-button:hover {
+  cursor: pointer;
 }
 .card_content {
   display: flex;

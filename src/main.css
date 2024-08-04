@@ -13,3 +13,6 @@
   --main-border-radius: 15px;
   --main-button-border-radius: 5px;
 }
+body {
+  margin: 0;
+}
