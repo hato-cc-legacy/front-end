@@ -1,22 +1,11 @@
-import {
-  createContext,
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { ReactNode, useEffect, useState } from "react";
 
-import AppState from "./interfaces/AppStateType";
 import * as sessionApi from "./api/session";
-
-const initialAppState: AppState = {};
-
-const AppContext = createContext(initialAppState);
-const AppDispatchContext = createContext<Dispatch<SetStateAction<AppState>>>(
-  () => initialAppState
-);
+import {
+  AppContext,
+  AppDispatchContext,
+  initialAppState,
+} from "./AppContextConst";
 
 const AppProvider = ({ children }: { children: ReactNode }) => {
   const [useAppState, setAppState] = useState(initialAppState);
@@ -46,9 +35,5 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
     </AppContext.Provider>
   );
 };
-
-export const useAppContext = () => useContext(AppContext);
-
-export const useAppDispatchContext = () => useContext(AppDispatchContext);
 
 export default AppProvider;

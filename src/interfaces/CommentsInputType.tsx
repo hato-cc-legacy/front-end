@@ -1,4 +1,5 @@
-export default interface CommentsInput{
-    text: string;
-    card_id: number;
+export default interface CommentsInput {
+  user_id: number;
+  text: string;
+  card_id: number;
 }

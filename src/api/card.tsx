@@ -13,6 +13,11 @@ export const updateCard = async (card_id: number, card: CardUpdateType) => {
   });
 };
 
+export const fetchCardsByUserId = async (user_id: number) => {
+  return await (await fetch(endPoint + "users/" + user_id)).json();
+};
+
+
 export const createCard = async (card: CreateCardType) => {
   return await fetch(endPoint , {
     method: "POST",

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import * as likesDislikesApi from "../api/likes-dislikes";
-import { useAppContext } from "../AppContext";
 import LikesDislikesType from "../interfaces/LikesDislikesType";
+import { useAppContext } from "../AppContextConst";
 
 interface Props {
   card_id: number;
