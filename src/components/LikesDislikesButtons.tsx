@@ -21,7 +21,7 @@ const LikesDisLikesButtons: React.FC<Props> = (props) => {
 
   useEffect(() => {
     fetchLikesDislikes();
-  }, []);
+  }, [props]);
 
   const fetchLikesDislikes = async () => {
     setLikesDislikes(await likesDislikesApi.fetchLikesDislikes(props.card_id));

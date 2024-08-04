@@ -16,7 +16,7 @@ const CreateCardWindow: React.FC<Props> = (props) => {
 
   const [useCard, setUseCard] = useState<CardType | null>(null);
 
-  const [chosenCategory, setChosenCategory] = useState<number>(3);
+  const [useChosenCategory, setChosenCategory] = useState<number>(3);
 
   const CreateCardOnClick = async () => {
     if (!backTextRef.current || !frontTextRef.current || !useAppState.user)
@@ -24,7 +24,7 @@ const CreateCardWindow: React.FC<Props> = (props) => {
     const card: CreateCardType = {
       back_text: backTextRef.current.value,
       front_text: frontTextRef.current.value,
-      category_id: chosenCategory,
+      category_id: useChosenCategory,
       user_id: useAppState.user.id,
     };
     const response = await cardApi.createCard(card);
