@@ -8,6 +8,7 @@ import moment from "moment";
 import CardComment from "./CardComment";
 import CommentsInputType from "../interfaces/CommentsInputType";
 import { useAppContext } from "../AppContext";
+import CreateCardWindow from "./CreateCardWindow";
 
 interface Props {
   card: CardType;
@@ -84,6 +85,12 @@ const Card: React.FC<Props> = (props) => {
           useComments.map((comment, index) => (
             <CardComment key={index} comment={comment}></CardComment>
           ))}
+      </div>
+      <button disabled={useAppState.user ? false : true}>Create a card</button>
+        <div className="card__create">
+          <CreateCardWindow
+          card={props.card}
+        />
       </div>
     </section>
   );

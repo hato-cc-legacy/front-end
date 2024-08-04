@@ -19,6 +19,6 @@ export const createCard = async (card: CreateCardType) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ card }),
+    body: JSON.stringify(card),
   });
 };
