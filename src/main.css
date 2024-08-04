@@ -1,5 +1,6 @@
 :root {
   --main-background-color: #32161f;
+  --box-shadow-color: rgba(0, 0, 0, 0.35);
   --secondary-background-color: #a8f9ff;
   --supplimental-background-color: #81a094;
   --main-text-color: #9ae5e6;

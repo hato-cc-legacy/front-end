@@ -11,7 +11,7 @@
 }
 
 .card {
-  max-width: 350px;
+  max-width: 450px;
 }
 
 .card-control-buttons {
@@ -20,18 +20,18 @@
   align-items: center;
   margin: 25px;
 }
-.card-control-buttons__create-button,
+
 .card-control-buttons__jokes-button,
 .card-control-buttons__trivia-button,
 .card-control-buttons__whatever-button {
-  border-radius: 5px;
-  padding: 10px 15px;
-  border: none;
-  font-family: var(--secondary-text-style);
-  font-weight: var(--heavy-font-weight);
-  background-color: var(--main-background-color);
-  color: var(--main-text-color);
-  text-transform: uppercase;
+border-radius: 5px;
+border: none;
+font-family: var(--secondary-text-style);
+font-weight: var(--heavy-font-weight);
+background-color: var(--main-background-color);
+color: var(--main-text-color);
+text-transform: uppercase;
+padding: 10px 15px
 }
 .card-control-buttons__button-container {
   cursor: pointer;
@@ -42,7 +42,12 @@
   justify-content: center;
   gap: 20px;
 }
-
+.card-control-buttons__create-button:hover,
+.card-control-buttons__jokes-button:hover,
+.card-control-buttons__trivia-button:hover,
+.card-control-buttons__whatever-button:hover {
+  cursor: pointer;
+}
 .card_content {
   display: flex;
   justify-content: center;
@@ -55,10 +60,9 @@
   justify-content: center;
   background-color: var(--secondary-background-color);
   font-size: var(--std-font-size);
-  border-radius: var(--main-border-radius);
   padding: 20px;
   text-align: center;
-  box-shadow: 3px 3px 3px var(--main-background-color);
+  box-shadow: 3px 3px 3px var(--box-shadow-color);
   border: 1px solid var(--supplimental-background-color);
 }
 .specs_container {
@@ -67,8 +71,22 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  gap: 20px;
+  gap: 20px
 }
+
+.card-control-buttons__jokes-button:hover,
+.card-control-buttons__trivia-button:hover,
+.card-control-buttons__whatever-button:hover {
+  cursor: pointer;
+  background-color: #5f2a3b;
+}
+  
+.card-control-buttons__jokes-button:active,
+.card-control-buttons__trivia-button:active,
+.card-control-buttons__whatever-button:active {
+  background-color: #003f7f;
+}
+
 .card__created_at {
   text-align: center;
 }

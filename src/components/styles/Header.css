@@ -23,4 +23,18 @@
 .login_button:hover,
 .set_home:hover {
   cursor: pointer;
+  background-color: #5f2a3b;
+  color: azure;
+}
+
+.title_header:hover,
+.button:hover {
+  cursor: pointer;
+  background-color: #5f2a3b;
+  
+}
+.title_header:active,
+.login_button:active,
+.set_home:active {
+  background-color: #003f7f;
 }
