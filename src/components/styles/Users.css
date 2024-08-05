@@ -10,7 +10,7 @@
     "c c" max-content
     "d d" auto;
   padding: 20px;
-  height: calc(100vh - var(--header-height) - var(--footer-height) + 20px * 2);
+  height: calc(100vh - var(--header-height) - var(--footer-height));
 }
 
 .user-page__user-info {
