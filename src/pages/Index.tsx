@@ -4,6 +4,7 @@ import Card from "../components/Card";
 import CreateCardWindow from "../components/CreateCardWindow";
 import { fetchCardByCategoryId } from "../api/card";
 import { useAppContext } from "../AppContextConst";
+import HatoSVG from "../components/assets/HatoSVG";
 
 const Index = () => {
   const useAppState = useAppContext();
@@ -67,7 +68,13 @@ const Index = () => {
           </div>
         </div>
       </div>
-      {useCurrentCard && <Card card={useCurrentCard}></Card>}
+      {useCurrentCard ? (
+        <Card card={useCurrentCard}></Card>
+      ) : (
+        <div className="loading-svg">
+          <HatoSVG></HatoSVG>
+        </div>
+      )}
     </section>
   );
 };

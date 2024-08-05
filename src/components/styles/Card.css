@@ -1,3 +1,9 @@
+@keyframes blinker {
+  50% {
+    opacity: 0.25;
+  }
+}
+
 .index {
   background-color: var(--supplimental-background-color);
   display: flex;
@@ -8,6 +14,10 @@
   font-family: var(--main-text-style);
   font-weight: var(--heavy-font-weight);
   padding: 15px;
+}
+
+.loading-svg {
+  animation: blinker 1s linear infinite;
 }
 
 .card {
