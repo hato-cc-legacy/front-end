@@ -15,12 +15,14 @@ import ReactTextareaAutosize from "react-textarea-autosize";
 
 interface Props {
   card: CardType;
+  active: boolean;
 }
 
 const Card: React.FC<Props> = (props) => {
   const useAppState = useAppContext();
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const active = useRef(props.active);
   const [useViews, setViews] = useState(props.card.views);
   const [useComments, setComments] = useState<CommentsType[] | null>(null);
   const [useIsCardFront, setIsCardFront] = useState(true);
@@ -30,7 +32,7 @@ const Card: React.FC<Props> = (props) => {
     cardApi.updateCard(props.card.id, { views: props.card.views + 1 });
     setViews(props.card.views + 1);
     setIsCardFront(true);
-    setIsShowComments(false);
+    if (active.current) setIsShowComments(false);
     fetchCardComments();
   }, [props]);
 
@@ -40,7 +42,7 @@ const Card: React.FC<Props> = (props) => {
 
   const handleCardFlipToBack = () => {
     setIsCardFront(false);
-    setIsShowComments(true);
+    if (active.current) setIsShowComments(true);
   };
 
   const fetchCardComments = async () => {
