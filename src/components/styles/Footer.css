@@ -2,4 +2,5 @@
   background-color: var(--main-background-color);
   height: var(--footer-height);
   width: 100%;
+  display: none;
 }
