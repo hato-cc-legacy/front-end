@@ -21,7 +21,8 @@ interface Props {
 const Card: React.FC<Props> = (props) => {
   const useAppState = useAppContext();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  //If true
+  //If true the card is on the main page and there is comment
+  //If false the card is inside userpage and there is no comment but you can edit and delete
   const active = useRef(props.active);
   const [useViews, setViews] = useState(props.card.views);
   const [useComments, setComments] = useState<CommentsType[] | null>(null);
@@ -29,10 +30,14 @@ const Card: React.FC<Props> = (props) => {
   const [useIsShowComments, setIsShowComments] = useState(false);
 
   useEffect(() => {
-    cardApi.updateCard(props.card.id, { views: props.card.views + 1 });
+    
     setViews(props.card.views + 1);
     setIsCardFront(true);
-    if (active.current) setIsShowComments(false);
+    if (active.current) {
+		setIsShowComments(false);
+		//Increase the counter only if is on the main page
+		cardApi.updateCard(props.card.id, { views: props.card.views + 1 });
+	};
     fetchCardComments();
   }, [props]);
 
