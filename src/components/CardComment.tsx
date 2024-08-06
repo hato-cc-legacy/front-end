@@ -7,7 +7,6 @@ import SVGReport from "./assets/Report";
 interface Props {
   comment: CommentsType;
 }
-
 const CardComment: React.FC<Props> = (props) => {
   return (
     <div className="card-comment">
@@ -25,5 +24,4 @@ const CardComment: React.FC<Props> = (props) => {
     </div>
   );
 };
-
 export default CardComment;
