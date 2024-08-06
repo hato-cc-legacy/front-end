@@ -43,10 +43,7 @@ const UserPage = () => {
       <section className="user-page">
         <div className="user-page__user-info">
           <h2 className="user-page__h2">User Info</h2>
-          <div className="user-page__user__id">
-            <strong>User ID: </strong>
-            <span>{useAppState.user.id}</span>
-          </div>
+          <div className="user-page__user__id"></div>
           <div className="user-page__user__name">
             <strong>Username: </strong>
             <span>{useAppState.user.username}</span>
@@ -59,7 +56,7 @@ const UserPage = () => {
           </div>
         </div>
         <div className="user-page__comment-history">
-          <h3 className="user-page__comment-history__h3">Your comments</h3>
+          <h3 className="user-page__comment-history__h3">Your Card</h3>
           <div className="user-page__comment-history__comments">
             {useComments &&
               useComments.map((comment, index) => (

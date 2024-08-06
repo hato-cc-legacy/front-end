@@ -4,8 +4,10 @@ import LikesDislikesType from "../interfaces/LikesDislikesType";
 import { useAppContext } from "../AppContextConst";
 import SVGLike from "./assets/Like";
 import SVGDislike from "./assets/Dislike";
+// import SVGReport from "./assets/";
 
 import "./styles/LikesDislikesButtons.css";
+import SVGReport from "./assets/Report";
 
 interface Props {
   card_id: number;
@@ -107,6 +109,11 @@ const LikesDisLikesButtons: React.FC<Props> = (props) => {
           <span> </span>
           <span>
             <SVGDislike className="svg" />
+          </span>
+        </button>
+        <button type="button" className="report">
+          <span>
+            <SVGReport />
           </span>
         </button>
       </div>

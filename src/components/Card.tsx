@@ -116,7 +116,9 @@ const Card: React.FC<Props> = (props) => {
           <div className="card__comments_section__comments">
             {useComments &&
               useComments.map((comment, index) => (
-                <CardComment key={index} comment={comment}></CardComment>
+                <div>
+                  <CardComment key={index} comment={comment}></CardComment>
+                </div>
               ))}
           </div>
         </div>
