@@ -45,6 +45,14 @@ const Card: React.FC<Props> = (props) => {
     if (active.current) setIsShowComments(true);
   };
 
+    const handleChangeCardClick = () => {
+			alert("I want to be changed!");
+		};
+
+  const handleDeleteCardClick = () => {
+	alert("I want to be deleted!");
+  }
+
   const fetchCardComments = async () => {
     setComments(await commentApi.fetchCardComments(props.card.id));
   };
@@ -72,7 +80,7 @@ const Card: React.FC<Props> = (props) => {
 
   return (
 		<section className="card">
-			<div className="card__content">
+			{/* <div className="card__content">
 				{useIsCardFront && (
 					<div className="card__content__front" onClick={handleCardFlipToBack}>
 						<span>{props.card.front_text}</span>
@@ -83,7 +91,19 @@ const Card: React.FC<Props> = (props) => {
 						<span>{props.card.back_text}</span>
 					</div>
 				)}
+			</div> */}
+			{/* Our flip flop */}
+			<div className="flip-card">
+				<div className="flip-card-inner">
+					<div className="flip-card-front" onClick={handleCardFlipToBack}>
+						<span>{props.card.front_text}</span>
+					</div>
+					<div className="flip-card-back" onClick={handleCardFlipToFront}>
+						<span>{props.card.back_text}</span>
+					</div>
+				</div>
 			</div>
+
 			<div className="specs_container">
 				<LikesDisLikesButtons card_id={props.card.id}></LikesDisLikesButtons>
 				<div className="card__views">
@@ -93,7 +113,24 @@ const Card: React.FC<Props> = (props) => {
 					<span>{useViews}</span>
 				</div>
 				<div className="card__views">
-					{!active.current ? <button>Delete</button> : <p>"False"</p>}
+					{!active.current ? (
+						<>
+							<button
+								className="card__delete_button"
+								onClick={handleChangeCardClick}
+							>
+								Edit
+							</button>
+							<button
+								className="card__delete_button"
+								onClick={handleDeleteCardClick}
+							>
+								Delete
+							</button>
+						</>
+					) : (
+						<></>
+					)}
 				</div>
 			</div>
 			<div className="card__created_at">
