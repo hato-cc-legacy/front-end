@@ -184,7 +184,7 @@
 	background-color: #c0e7d9;
 }
 
-.card__deletton:hover {
+.card__delete_button:hover {
 	cursor: pointer;
 	background-color: rgb(207, 250, 250);
 }
