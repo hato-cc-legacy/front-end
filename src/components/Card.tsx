@@ -12,6 +12,7 @@ import { useAppContext } from "../AppContextConst";
 
 import "./styles/Card.css";
 import ReactTextareaAutosize from "react-textarea-autosize";
+import DeleteCard from "./DeleteCard";
 
 interface Props {
   card: CardType;
@@ -29,6 +30,9 @@ const Card: React.FC<Props> = (props) => {
   const [useIsCardFront, setIsCardFront] = useState(true);
   const [useIsShowComments, setIsShowComments] = useState(false);
 
+  //New states for show delete confirmation
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+;
   useEffect(() => {
     
     setViews(props.card.views + 1);
@@ -55,7 +59,7 @@ const Card: React.FC<Props> = (props) => {
 		};
 
   const handleDeleteCardClick = () => {
-	alert("I want to be deleted!");
+	setShowDeleteConfirm(true);
   }
 
   const fetchCardComments = async () => {
@@ -85,29 +89,21 @@ const Card: React.FC<Props> = (props) => {
 
   return (
 		<section className="card">
-			{/* <div className="card__content">
-				{useIsCardFront && (
-					<div className="card__content__front" onClick={handleCardFlipToBack}>
-						<span>{props.card.front_text}</span>
-					</div>
-				)}
-				{!useIsCardFront && (
-					<div className="card__content__back" onClick={handleCardFlipToFront}>
-						<span>{props.card.back_text}</span>
-					</div>
-				)}
-			</div> */}
-			{/* Our flip flop */}
-			<div className="flip-card">
-				<div className="flip-card-inner">
-					<div className="flip-card-front" onClick={handleCardFlipToBack}>
-						<span>{props.card.front_text}</span>
-					</div>
-					<div className="flip-card-back" onClick={handleCardFlipToFront}>
-						<span>{props.card.back_text}</span>
+			{showDeleteConfirm ? (
+				<DeleteCard backAction={setShowDeleteConfirm} cardId={props.card.id}></DeleteCard>
+			) : (
+				/* Our flip flop */
+				<div className="flip-card">
+					<div className="flip-card-inner">
+						<div className="flip-card-front" onClick={handleCardFlipToBack}>
+							<span>{props.card.front_text}</span>
+						</div>
+						<div className="flip-card-back" onClick={handleCardFlipToFront}>
+							<span>{props.card.back_text}</span>
+						</div>
 					</div>
 				</div>
-			</div>
+			)}
 
 			<div className="specs_container">
 				<LikesDisLikesButtons card_id={props.card.id}></LikesDisLikesButtons>
