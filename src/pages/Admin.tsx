@@ -14,7 +14,6 @@ interface Admin {
   text: string;
   card_id: number;
 }
-
 const Admin = () => {
   const [cards, setCards] = useState<CardType[] | null>(null);
   const [comments, setComment] = useState<CardType[] | null>(null);
