@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import "./styles/ChangeCard.css";
 import { createHeader } from "../util/util";
 import { useState } from "react";
@@ -8,6 +7,7 @@ type Props = {
 	cardId: number;
 	frontText: string;
 	backText: string;
+	updateCallback(): void;
 };
 
 const ChangeCard: React.FC<Props> = ({
@@ -15,9 +15,9 @@ const ChangeCard: React.FC<Props> = ({
 	cardId,
 	frontText,
 	backText,
+	updateCallback,
 }) => {
 	const BACKEND_SERVER = import.meta.env.VITE_SERVER;
-	const navigate = useNavigate();
 
 	//State = 0 Front; State = 1 Back
 
@@ -78,16 +78,19 @@ const ChangeCard: React.FC<Props> = ({
 				back_text: cardBackText,
 			},
 		});
-		await fetch(BACKEND_SERVER + `/cards/${cardId}`, header).then(() => {
-			setSavingStauts(STATUS_SAVED);
-			return new Promise((r) => setTimeout(r, 1000));
-		}).then(() => {
-			setSavingStauts("");
-			handleBackAction();
-		}).catch(() => {
-			setSavingStauts("")
-		});
-		navigate("/user");
+		await fetch(BACKEND_SERVER + `/cards/${cardId}`, header)
+			.then(() => {
+				setSavingStauts(STATUS_SAVED);
+				return new Promise((r) => setTimeout(r, 1000));
+			})
+			.then(() => {
+				setSavingStauts("");
+				handleBackAction();
+			})
+			.catch(() => {
+				setSavingStauts("");
+			});
+		updateCallback();
 	};
 
 	return (
