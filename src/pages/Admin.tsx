@@ -1,6 +1,4 @@
-// import Axios from "axios";
 import { useEffect, useState } from "react";
-import CardType from "../interfaces/CardType";
 import "../components/styles/Admin.css";
 import Reports from "../interfaces/Reports";
 import DeleteSVG from "../components/assets/DeleteSVG";
