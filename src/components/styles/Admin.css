@@ -1,0 +1,16 @@
+body {
+  position: relative;
+}
+
+.admin-container {
+  text-align: center;
+}
+
+.comments {
+  width: 60rem;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
