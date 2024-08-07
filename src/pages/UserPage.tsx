@@ -24,8 +24,10 @@ const UserPage = () => {
 
   const fetchCardsByUserId = async () => {
     if (useAppState.user) {
+      console.log("Fetch again");
       const cards = await cardApi.fetchCardsByUserId(useAppState.user.id);
       setCards(cards);
+      console.log(cards);
     }
   };
 
@@ -38,7 +40,59 @@ const UserPage = () => {
     }
   };
 
+  const handleUpdateCallback = () => {
+    console.log("Callback");
+    setCards(null);
+    fetchCardsByUserId();
+  }
+
   return (
+		useAppState.user && (
+			<section className="user-page">
+				<div className="user-page__user-info">
+					<h2 className="user-page__h2">User Info</h2>
+					<div className="user-page__user__id">
+						<strong>User ID: </strong>
+						<span>{useAppState.user.id}</span>
+					</div>
+					<div className="user-page__user__name">
+						<strong>Username: </strong>
+						<span>{useAppState.user.username}</span>
+					</div>
+					<div className="user-page__user__created_at">
+						<strong>Created at: </strong>
+						<span>
+							{new Date(useAppState.user.created_at).toLocaleDateString()}
+						</span>
+					</div>
+				</div>
+				<div className="user-page__comment-history">
+					<h3 className="user-page__comment-history__h3">Your comments</h3>
+					<div className="user-page__comment-history__comments">
+						{useComments &&
+							useComments.map((comment, index) => (
+								<CardComment key={index} comment={comment}></CardComment>
+							))}
+					</div>
+				</div>
+				<hr className="user-page__hr" />
+				<div className="user-page__card-history">
+					<h3 className="user-page__card-history__h3">Your cards</h3>
+					<div className="user-page__card-history__cards">
+						{useCards &&
+							useCards.map((card, index) => (
+								<Card
+									key={index}
+									card={card}
+									active={false}
+									updateCallBack={handleUpdateCallback}
+								></Card>
+							))}
+					</div>
+				</div>
+			</section>
+		)
+	);
     useAppState.user && (
       <section className="user-page">
         <div className="user-page__user-info">
