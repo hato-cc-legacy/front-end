@@ -3,7 +3,7 @@ import CommentsType from "../interfaces/CommentsType";
 import LikesDisLikesButtons from "./LikesDislikesButtons";
 import * as cardApi from "../api/card";
 import * as commentApi from "../api/comments";
-import { act, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import moment from "moment";
 import SVGEye from "./assets/Eye";
 import CardComment from "./CardComment";
@@ -61,12 +61,12 @@ const Card: React.FC<Props> = (props) => {
 		switch (state) {
 			case 0:
 				setCurreStateElements(
-					<div className="flip-card">
+					<div className="flip-card" onMouseEnter={handleCardFlipFlop}>
 						<div className="flip-card-inner">
-							<div className="flip-card-front" onClick={handleCardFlipToBack}>
+							<div className="flip-card-front">
 								<span>{frontText}</span>
 							</div>
-							<div className="flip-card-back" onClick={handleCardFlipToFront}>
+							<div className="flip-card-back">
 								<span>{backText}</span>
 							</div>
 						</div>
@@ -91,13 +91,9 @@ const Card: React.FC<Props> = (props) => {
 		}
 	};
 
-	const handleCardFlipToFront = () => {
-		setIsCardFront(true);
-	};
-
-	const handleCardFlipToBack = () => {
+	const handleCardFlipFlop = () => {
 		setIsCardFront(false);
-		if (active.current) setIsShowComments(true);
+		if (active.current && !useIsCardFront) setIsShowComments(true);
 	};
 
 	const handleChangeCardClick = () => {
