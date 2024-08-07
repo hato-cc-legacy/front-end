@@ -2,18 +2,8 @@
 import { useEffect, useState } from "react";
 import CardType from "../interfaces/CardType";
 import "../components/styles/Admin.css";
+import DeleteSVG from "../components/assets/DeleteSVG";
 
-// import Card from "../components/Card";
-// import CommentsType from "../interfaces/CommentsType";
-// import CardComment from "../components/CardComment";
-// import { useAppContext } from "../AppContextConst";
-import "../components/styles/Users.css";
-
-interface Admin {
-  user_id: number;
-  text: string;
-  card_id: number;
-}
 const Admin = () => {
   const [cards, setCards] = useState<CardType[] | null>(null);
   const [comments, setComment] = useState<CardType[] | null>(null);
@@ -40,23 +30,31 @@ const Admin = () => {
         //Cards
         <div className="admin-container">
           <div className="cards-container" key={index}>
-            <h1>
+            <span>
               {card.front_text}
-              <span> Created </span>
-              <button onClick={() => {}}>Delete</button>
-              {new Date(card.created_at).toLocaleDateString()}
-            </h1>
-
-            {/* Comments */}
-            <div className="comments-container">
-              {comments?.map((comment: CardType, index: number) => {
-                return (
-                  <div className="comments" key={index}>
-                    <h3>{comment.text}</h3>
-                  </div>
-                );
-              })}
-            </div>
+              <div className="deleteBtn">
+                <button onClick={() => {}}>
+                  <DeleteSVG />
+                </button>
+              </div>
+            </span>
+          </div>
+          {/* Comments */}
+          <div className="comments-container">
+            {comments?.map((comment: CardType, index: number) => {
+              return (
+                <div className="comments" key={index}>
+                  <span>
+                    {comment.text}
+                    <div className="deleteBtn">
+                      <button className="delete" onClick={() => {}}>
+                        <DeleteSVG />
+                      </button>
+                    </div>
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
       );
