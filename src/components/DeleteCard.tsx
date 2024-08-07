@@ -3,7 +3,7 @@ import "./styles/DeleteCard.css";
 import { createHeader } from "../util/util";
 
 type Props = {
-	backAction(state:boolean): void;
+	backAction(state:number): void;
 	cardId: number;
 }
 
@@ -15,7 +15,7 @@ const DeleteCard: React.FC<Props> = ({backAction,cardId}) => {
 	const navigate = useNavigate();
 
 	const handleBackAction = () => {
-		backAction(false);
+		backAction(0);
 	}
 
 	const handleDeleteCard = async () => {
