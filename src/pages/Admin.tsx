@@ -23,7 +23,8 @@ const Admin = () => {
   useEffect(() => {
     // fetchAllCardData(), fetchAllCommentData();
     fetchReportedThings();
-  }, []);
+    console.log(reported)
+  },[]);
 
   // const fetchAllCommentData = async () => {
   //   const endPoint = import.meta.env.VITE_SERVER + "/comments";
@@ -39,9 +40,10 @@ const Admin = () => {
 
   const fetchReportedThings = async () => {
     const endPoint = import.meta.env.VITE_SERVER + "/cards-reports/all";
-    const response: Reports[] | [] = await (await fetch(endPoint)).json();
-    console.log(response)
-    setReported(response)
+    const fetched = await fetch(endPoint);
+    const jsoned: Reports[] | [] = await fetched.json();
+    console.log(jsoned)
+    setReported(jsoned)
   }
 
   const deleteCard = async (cardId: string) => {
@@ -87,25 +89,28 @@ const Admin = () => {
     <>
     test
       <div className="admin-container">
-        {reported.map((elem: Reports) => {
+        {reported.map((elem) => {
           return (
             <>
-            test2
+            each card
               {
               reported.length === 0 ? null :
-                <div className="cards-container" key={elem.id + "card"}>
-                  {elem.back_text}
-                  {elem.front_text}
-                </div>}
+                <div className="cards-container" key={elem.card.id + "card"}>
+                  {elem.card.back_text}
+                  {elem.card.front_text}
+                  card_content
+                </div>
+                }
               {
-                elem.comments === undefined || elem.comments.length === 0 ? null :
-                  <div className="comments-container" key={`${elem.id}-comment`}>
-                    {elem.comments.map((elem2) => {
+                elem.card.comments === undefined || elem.card.comments.length === 0 ? null :
+                  <div className="comments-container" key={`${elem.card.id}-comment`}>
+                    {elem.card.comments.map((elem2) => {
                       return (
                         <>
-                        test3
-                          <div key={elem.id + elem2.id}>
+                        each_comment
+                          <div key={elem.card.id + elem2.id}>
                             {elem2.text}
+                            comment_content
                           </div>
                         </>
                       )
