@@ -10,51 +10,45 @@ import "../components/styles/Users.css";
 import { useNavigate } from "react-router-dom";
 
 const UserPage = () => {
-  const navigate = useNavigate();
-  const useAppState = useAppContext();
+	const navigate = useNavigate();
+	const useAppState = useAppContext();
 
-  const [useCards, setCards] = useState<CardType[] | null>(null);
-  const [useComments, setComments] = useState<CommentsType[] | null>(null);
+	const [useCards, setCards] = useState<CardType[] | null>(null);
+	const [useComments, setComments] = useState<CommentsType[] | null>(null);
 
-  useEffect(() => {
-    if (!useAppState.user) navigate("/login");
-    fetchCardsByUserId();
-    fetchCommentsByUserId();
-  }, [useAppState]);
+	useEffect(() => {
+		if (!useAppState.user) navigate("/login");
+		fetchCardsByUserId();
+		fetchCommentsByUserId();
+	}, [useAppState]);
 
-  const fetchCardsByUserId = async () => {
-    if (useAppState.user) {
-      console.log("Fetch again");
-      const cards = await cardApi.fetchCardsByUserId(useAppState.user.id);
-      setCards(cards);
-      console.log(cards);
-    }
-  };
+	const fetchCardsByUserId = async () => {
+		if (useAppState.user) {
+			const cards = await cardApi.fetchCardsByUserId(useAppState.user.id);
+			setCards(cards);
+		}
+	};
 
-  const fetchCommentsByUserId = async () => {
-    if (useAppState.user) {
-      const comments = await commentApi.fetchCommentsByUserId(
-        useAppState.user.id
-      );
-      setComments(comments);
-    }
-  };
+	const fetchCommentsByUserId = async () => {
+		if (useAppState.user) {
+			const comments = await commentApi.fetchCommentsByUserId(
+				useAppState.user.id
+			);
+			setComments(comments);
+		}
+	};
 
-  const handleUpdateCallback = () => {
-    console.log("Callback");
-    setCards(null);
-    fetchCardsByUserId();
-  }
+	const handleUpdateCallback = () => {
+		setCards(null);
+		fetchCardsByUserId();
+	};
 
-  return (
+	return (
 		useAppState.user && (
 			<section className="user-page">
 				<div className="user-page__user-info">
 					<h2 className="user-page__h2">User Info</h2>
-					<div className="user-page__user__id">
-						<strong>User ID: </strong>
-						<span>{useAppState.user.id}</span>
-					</div>
+					<div className="user-page__user__id"></div>
 					<div className="user-page__user__name">
 						<strong>Username: </strong>
 						<span>{useAppState.user.username}</span>
@@ -67,7 +61,7 @@ const UserPage = () => {
 					</div>
 				</div>
 				<div className="user-page__comment-history">
-					<h3 className="user-page__comment-history__h3">Your comments</h3>
+					<h3 className="user-page__comment-history__h3">Your Card</h3>
 					<div className="user-page__comment-history__comments">
 						{useComments &&
 							useComments.map((comment, index) => (
