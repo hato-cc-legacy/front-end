@@ -53,6 +53,10 @@ const Card: React.FC<Props> = (props) => {
 		fetchCardComments();
 	}, [props]);
 
+	useEffect(() =>{
+		handleUpdateCard();
+	},[state]);
+
 	const handleUpdateCard =  () => {
 		switch (state) {
 			case 0:
