@@ -73,7 +73,7 @@ const UserPage = () => {
           <div className="user-page__card-history__cards">
             {useCards &&
               useCards.map((card, index) => (
-                <Card key={index} card={card}></Card>
+                <Card key={index} card={card} active={false}></Card>
               ))}
           </div>
         </div>
