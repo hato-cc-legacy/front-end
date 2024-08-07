@@ -13,98 +13,125 @@ import { useAppContext } from "../AppContextConst";
 import "./styles/Card.css";
 import ReactTextareaAutosize from "react-textarea-autosize";
 import DeleteCard from "./DeleteCard";
+import ChangeCard from "./ChangeCard";
 
 interface Props {
-  card: CardType;
-  active: boolean;
+	card: CardType;
+	active: boolean;
 }
 
 const Card: React.FC<Props> = (props) => {
-  const useAppState = useAppContext();
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  //If true the card is on the main page and there is comment
-  //If false the card is inside userpage and there is no comment but you can edit and delete
-  const active = useRef(props.active);
-  const [useViews, setViews] = useState(props.card.views);
-  const [useComments, setComments] = useState<CommentsType[] | null>(null);
-  const [useIsCardFront, setIsCardFront] = useState(true);
-  const [useIsShowComments, setIsShowComments] = useState(false);
+	const useAppState = useAppContext();
+	const textareaRef = useRef<HTMLTextAreaElement>(null);
+	//If true the card is on the main page and there is comment
+	//If false the card is inside userpage and there is no comment but you can edit and delete
+	const active = useRef(props.active);
+	const [useViews, setViews] = useState(props.card.views);
+	const [useComments, setComments] = useState<CommentsType[] | null>(null);
+	const [useIsCardFront, setIsCardFront] = useState(true);
+	const [useIsShowComments, setIsShowComments] = useState(false);
 
-  //New states for show delete confirmation
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-;
-  useEffect(() => {
-    
-    setViews(props.card.views + 1);
-    setIsCardFront(true);
-    if (active.current) {
-		setIsShowComments(false);
-		//Increase the counter only if is on the main page
-		cardApi.updateCard(props.card.id, { views: props.card.views + 1 });
-	};
-    fetchCardComments();
-  }, [props]);
+	//0 is view, 1 is change, 2 is delete
+	const [state, setState] = useState(0);
+	const [currentStateElements, setCurreStateElements] = useState(<></>);
 
-  const handleCardFlipToFront = () => {
-    setIsCardFront(true);
-  };
+	const [frontText, setFrontText] = useState(props.card.front_text);
+	const [backText, setBackText] = useState(props.card.back_text);
 
-  const handleCardFlipToBack = () => {
-    setIsCardFront(false);
-    if (active.current) setIsShowComments(true);
-  };
+	useEffect(() => {
+		setIsCardFront(true);
+		setFrontText(props.card.front_text);
+		setBackText(props.card.back_text);
+		setState(0);
+		handleUpdateCard();
+		if (active.current) {
+			setViews(props.card.views + 1);
+			setIsShowComments(false);
+			//Increase the counter only if is on the main page
+			cardApi.updateCard(props.card.id, { views: props.card.views + 1 });
+		}
+		fetchCardComments();
+	}, [props]);
 
-    const handleChangeCardClick = () => {
-			alert("I want to be changed!");
-		};
-
-  const handleDeleteCardClick = () => {
-	setShowDeleteConfirm(true);
-  }
-
-  const fetchCardComments = async () => {
-    setComments(await commentApi.fetchCardComments(props.card.id));
-  };
-
-  const createCommentClick = async () => {
-    if (!textareaRef.current || !useComments || !useAppState.user) return;
-
-    const commentText = textareaRef.current.value.trim();
-
-    if (commentText === "") {
-      textareaRef.current.classList.add("input-error");
-      return;
-    } else textareaRef.current.classList.remove("input-error");
-
-    const comment: CommentsInputType = {
-      user_id: useAppState.user.id,
-      card_id: props.card.id,
-      text: textareaRef.current.value,
-    };
-    const response = await commentApi.makeNewCardComment(comment);
-    useComments.unshift(response);
-    setComments([...useComments]);
-    textareaRef.current.value = "";
-  };
-
-  return (
-		<section className="card">
-			{showDeleteConfirm ? (
-				<DeleteCard backAction={setShowDeleteConfirm} cardId={props.card.id}></DeleteCard>
-			) : (
-				/* Our flip flop */
-				<div className="flip-card">
-					<div className="flip-card-inner">
-						<div className="flip-card-front" onClick={handleCardFlipToBack}>
-							<span>{props.card.front_text}</span>
-						</div>
-						<div className="flip-card-back" onClick={handleCardFlipToFront}>
-							<span>{props.card.back_text}</span>
+	const handleUpdateCard =  () => {
+		switch (state) {
+			case 0:
+				setCurreStateElements(
+					<div className="flip-card">
+						<div className="flip-card-inner">
+							<div className="flip-card-front" onClick={handleCardFlipToBack}>
+								<span>{frontText}</span>
+							</div>
+							<div className="flip-card-back" onClick={handleCardFlipToFront}>
+								<span>{backText}</span>
+							</div>
 						</div>
 					</div>
-				</div>
-			)}
+				);
+				break;
+			case 1:
+				setCurreStateElements(
+					<ChangeCard
+						backAction={setState}
+						cardId={props.card.id}
+						frontText={props.card.front_text}
+						backText={props.card.back_text}
+					></ChangeCard>
+				);
+				break;
+			case 2:
+				setCurreStateElements(
+					<DeleteCard backAction={setState} cardId={props.card.id}></DeleteCard>
+				);
+				break;
+		}
+	};
 
+	const handleCardFlipToFront = () => {
+		setIsCardFront(true);
+	};
+
+	const handleCardFlipToBack = () => {
+		setIsCardFront(false);
+		if (active.current) setIsShowComments(true);
+	};
+
+	const handleChangeCardClick = () => {
+		setState(1);
+	};
+
+	const handleDeleteCardClick = () => {
+		setState(2);
+	};
+
+	const fetchCardComments = async () => {
+		setComments(await commentApi.fetchCardComments(props.card.id));
+	};
+
+	const createCommentClick = async () => {
+		if (!textareaRef.current || !useComments || !useAppState.user) return;
+
+		const commentText = textareaRef.current.value.trim();
+
+		if (commentText === "") {
+			textareaRef.current.classList.add("input-error");
+			return;
+		} else textareaRef.current.classList.remove("input-error");
+
+		const comment: CommentsInputType = {
+			user_id: useAppState.user.id,
+			card_id: props.card.id,
+			text: textareaRef.current.value,
+		};
+		const response = await commentApi.makeNewCardComment(comment);
+		useComments.unshift(response);
+		setComments([...useComments]);
+		textareaRef.current.value = "";
+	};
+
+	return (
+		<section className="card">
+			{currentStateElements}
 			<div className="specs_container">
 				<LikesDisLikesButtons card_id={props.card.id}></LikesDisLikesButtons>
 				<div className="card__views">
