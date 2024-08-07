@@ -18,9 +18,11 @@ import ChangeCard from "./ChangeCard";
 interface Props {
 	card: CardType;
 	active: boolean;
+	updateCallBack(): void;
 }
 
 const Card: React.FC<Props> = (props) => {
+	console.log("The props value",props.card.front_text);
 	const useAppState = useAppContext();
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
 	//If true the card is on the main page and there is comment
@@ -53,13 +55,14 @@ const Card: React.FC<Props> = (props) => {
 		fetchCardComments();
 	}, [props]);
 
-	useEffect(() =>{
+	useEffect(() => {
 		handleUpdateCard();
-	},[state]);
+	}, [state]);
 
-	const handleUpdateCard =  () => {
+	const handleUpdateCard = () => {
 		switch (state) {
 			case 0:
+				console.log("Create again with", frontText);
 				setCurreStateElements(
 					<div className="flip-card" onMouseEnter={handleCardFlipFlop}>
 						<div className="flip-card-inner">
@@ -80,12 +83,17 @@ const Card: React.FC<Props> = (props) => {
 						cardId={props.card.id}
 						frontText={props.card.front_text}
 						backText={props.card.back_text}
+						updateCallback={handleUpdateCardForCallback}
 					></ChangeCard>
 				);
 				break;
 			case 2:
 				setCurreStateElements(
-					<DeleteCard backAction={setState} cardId={props.card.id}></DeleteCard>
+					<DeleteCard
+						backAction={setState}
+						cardId={props.card.id}
+						updateCallback={handleUpdateCardForCallback}
+					></DeleteCard>
 				);
 				break;
 		}
@@ -128,6 +136,12 @@ const Card: React.FC<Props> = (props) => {
 		setComments([...useComments]);
 		textareaRef.current.value = "";
 	};
+
+	const handleUpdateCardForCallback = () => {
+		props.updateCallBack();
+		setState(0);
+		handleUpdateCard();
+	}
 
 	return (
 		<section className="card">

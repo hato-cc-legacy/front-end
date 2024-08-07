@@ -1,18 +1,17 @@
-import { useNavigate } from "react-router-dom";
 import "./styles/DeleteCard.css";
 import { createHeader } from "../util/util";
 
 type Props = {
 	backAction(state:number): void;
 	cardId: number;
+	updateCallback(): void;
 }
 
 
 
-const DeleteCard: React.FC<Props> = ({backAction,cardId}) => {
+const DeleteCard: React.FC<Props> = ({backAction,cardId, updateCallback}) => {
 
 	const BACKEND_SERVER = import.meta.env.VITE_SERVER
-	const navigate = useNavigate();
 
 	const handleBackAction = () => {
 		backAction(0);
@@ -21,7 +20,7 @@ const DeleteCard: React.FC<Props> = ({backAction,cardId}) => {
 	const handleDeleteCard = async () => {
 		const header = createHeader('DELETE',{});
 		await fetch(BACKEND_SERVER + `/cards/${cardId}`, header);
-		navigate("/user");
+		updateCallback();
 	};
 
 
