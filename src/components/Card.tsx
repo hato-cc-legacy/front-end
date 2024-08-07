@@ -22,7 +22,6 @@ interface Props {
 }
 
 const Card: React.FC<Props> = (props) => {
-	console.log("The props value",props.card.front_text);
 	const useAppState = useAppContext();
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
 	//If true the card is on the main page and there is comment
@@ -62,7 +61,6 @@ const Card: React.FC<Props> = (props) => {
 	const handleUpdateCard = () => {
 		switch (state) {
 			case 0:
-				console.log("Create again with", frontText);
 				setCurreStateElements(
 					<div className="flip-card" onMouseEnter={handleCardFlipFlop}>
 						<div className="flip-card-inner">
@@ -147,7 +145,7 @@ const Card: React.FC<Props> = (props) => {
 		<section className="card">
 			{currentStateElements}
 			<div className="specs_container">
-				<LikesDisLikesButtons card_id={props.card.id}></LikesDisLikesButtons>
+				<LikesDisLikesButtons card_id={props.card.id} active={active.current}></LikesDisLikesButtons>
 				<div className="card__views">
 					<span>
 						<SVGEye className="svg" />

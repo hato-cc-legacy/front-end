@@ -24,10 +24,8 @@ const UserPage = () => {
 
 	const fetchCardsByUserId = async () => {
 		if (useAppState.user) {
-			console.log("Fetch again");
 			const cards = await cardApi.fetchCardsByUserId(useAppState.user.id);
 			setCards(cards);
-			console.log(cards);
 		}
 	};
 
@@ -41,7 +39,6 @@ const UserPage = () => {
 	};
 
 	const handleUpdateCallback = () => {
-		console.log("Callback");
 		setCards(null);
 		fetchCardsByUserId();
 	};
