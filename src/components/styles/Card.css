@@ -173,7 +173,6 @@
 .card__comments_section__new-comment__button:active {
   box-shadow: 0 0 5px rgba(0, 0, 0, 1);
 }
-<<<<<<< HEAD
 
 /* Our new css */
 .card__delete_button {
@@ -238,5 +237,3 @@
 .flip-card-back {
 	transform: rotateY(180deg);
 }
-=======
->>>>>>> karl-admin-page
